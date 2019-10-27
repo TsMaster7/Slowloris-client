@@ -82,3 +82,5 @@ function main()
 }
 
 main();
+
+print("Bye");
