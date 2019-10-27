@@ -54,7 +54,6 @@ function main()
         list($key, $value) = explode(":", $setting);
         $settings[$key] = trim($value);
     }
-    var_dump($settings);
 
     $server = $settings['server'] ?? "127.0.0.1";
     $host = $settings['host'] ?? "localhost";
